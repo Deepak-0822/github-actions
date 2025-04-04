@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '/workspaces/github-actions/src/**'
+      - 'src/**'
       - '**/**/*.yaml'
 
 jobs:
