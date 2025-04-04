@@ -11,10 +11,6 @@ jobs:
   build-linux:
     name: Build on Ubuntu with Java 21
     runs-on: ubuntu-latest
-jobs:
-  build-linux:
-    name: Build on Ubuntu with Java 21
-    runs-on: ubuntu-latest
  
     steps:
       - name: Checkout code
