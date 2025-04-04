@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '/workspaces/github-actions/src/main/java/com/mycompany/app/app.java'
+      - '**/**/*.yaml'
 
 jobs:
   build-linux:
