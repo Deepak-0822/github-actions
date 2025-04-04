@@ -51,4 +51,4 @@ jobs:
     steps:
       - name:
         run: | 
-          echo "build windows status ${{ needs.*.result}}" 
+          echo "build windows status ${{ needs.**.result}}" 
