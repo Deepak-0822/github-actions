@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '/workspaces/github-actions/src/main/java/com/mycompany/app/app.java'
+      - '/workspaces/github-actions/src/main/java/com/mycompany/app'
       - '**/**/*.yaml'
 
 jobs:
