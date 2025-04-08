@@ -11,6 +11,16 @@ bad commit
 auto merge 
 automerge 2
 
+conflict 2
+sqush 1
+sqush 2
+sqush 3
+sqush 4
+---
+squash commit cmd1
 
+squash commit cmd2
 
-conflict
+squash commit cmd3
+
+squash commit cmd 4 
