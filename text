@@ -20,3 +20,5 @@ sqush 4
 squash commit cmd1
 
 squash commit cmd2
+
+squash commit cmd3
