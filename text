@@ -16,3 +16,5 @@ sqush 1
 sqush 2
 sqush 3
 sqush 4
+---
+squash commit cmd1
