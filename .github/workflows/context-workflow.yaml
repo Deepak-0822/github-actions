@@ -5,22 +5,22 @@ env:
   env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs:
-  build-linux:
-    name: Build on Ubuntu with Java 17
-    runs-on: ubuntu-latest
+  # build-linux:
+  #   name: Build on Ubuntu with Java 17
+  #   runs-on: ubuntu-latest
  
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
  
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+  #     - name: Set up Java 17
+  #       uses: actions/setup-java@v4
+  #       with:
+  #         distribution: 'temurin'
+  #         java-version: '17'
 
-      - name: Build with Maven
-        run: mvn clean install
+  #     - name: Build with Maven
+  #       run: mvn clean install
   display-variables:
     name: ${{ vars.JOB_NAME }}
     # You can use configuration variables with the `vars` context for dynamic jobs
