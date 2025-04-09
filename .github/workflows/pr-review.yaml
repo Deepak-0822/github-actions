@@ -2,7 +2,7 @@ name: CI-Workflow
  
 on:
   pull_request_review:
-    types: [ submited, edited ]
+    types: [ submitted, edited ]
 
 jobs:
   build-linux:
