@@ -1,6 +1,7 @@
 name: CI-Workflow
  
 on:
+  fork: 
   pull_request_review:
     types: [ submitted, edited ]
 
