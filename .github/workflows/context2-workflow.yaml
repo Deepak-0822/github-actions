@@ -41,7 +41,7 @@ jobs:
  
       - name: Publish artifacts (Ubuntu)
         if: runner.os == 'Linux'
-        id: set-output
+        id: set-output-ubuntu
         run: |
           mkdir -p artifacts
           cp /home/runner/work/github-actions/github-actions/target/*.jar artifacts/
@@ -49,7 +49,7 @@ jobs:
 
       - name: Publish artifacts (Windows)
         if: runner.os == 'Windows'
-        id: set-output
+        id: set-output-windows
         run: |
           mkdir -p artifacts
           cp D:\a\github-actions\github-actions\target\*.jar artifacts/
