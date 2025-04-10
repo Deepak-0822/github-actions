@@ -53,7 +53,7 @@ jobs:
  
     steps:
       - name: Use build output
-        run: echo "Deploying from: ${{ needs.build.outputs.build-dir }}"
+        run: echo "Deploying from ${{ needs.build.outputs.build-dir }}"
  
       - name: Deploy app
         run: |
