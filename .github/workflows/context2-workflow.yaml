@@ -70,7 +70,7 @@ jobs:
           echo "Deploying JAR to ${{ github.event.inputs.environment }} environment"
  
       - name: Use secret
-        run: echo "Secret token ${{ secrets.DEPLOY_TOKEN }}"
+        run: echo "Secret token ${{ secrets.PASSWORD}}"
  
       - name: Use global variable
-        run: echo "Global variable $GLOBAL_ENV_VAR" 
+        run: echo "Global variable ENV VAR: $GLOBAL_ENV_VAR"
