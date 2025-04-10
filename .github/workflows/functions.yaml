@@ -21,4 +21,4 @@ jobs:
  
       - name: Print Status
         if: ${{ always() }}
-        run: echo "Workflow status: ${{ job.status }}"
+        run: echo "Workflow status ${{ job.status }}"
