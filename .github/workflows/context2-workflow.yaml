@@ -64,5 +64,4 @@ jobs:
         run: echo "Secret token ${{ secrets.DEPLOY_TOKEN }}"
  
       - name: Use global variable
-        run: echo "Global variable: $GLOBAL_ENV_VAR"
- 
+        run: echo "Global variable $GLOBAL_ENV_VAR" 
