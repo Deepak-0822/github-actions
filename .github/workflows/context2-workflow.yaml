@@ -5,8 +5,8 @@ on:
     inputs:
       environment:
         description: 'Environment to deploy to (dev, staging, production)'
-        required: false
-        default: 'main'
+        required: true
+        default: 'dev'
  
 env:
   GLOBAL_ENV_VAR: 'enabled'
@@ -25,7 +25,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
- 
+      - name: Show PASSWORD
+        run: |
+          echo "PASSWORD is set but hidden MY_SECRET ${{ secrets.PASSWORD }} "
+          echo "User_name is set but hidden MY_SECRET ${{ vars.USER_NAME }} "
+          
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
         with:
