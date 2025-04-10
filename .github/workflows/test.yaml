@@ -17,5 +17,5 @@ jobs:
     steps:
       - name: Echo Environment Variables
         run: |
-          echo "Env var USERNAME: ${{ vars.USERNAME }}"
-          echo "Env secret API_KEY: ${{ secrets.API_KEY }}"
+          echo "Env var USERNAME: ${{ vars.USER_NAME }}"
+          echo "Env secret API_KEY: ${{ secrets.PASSWORD }}"
