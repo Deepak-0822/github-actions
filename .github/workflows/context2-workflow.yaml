@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        java-version: [ 11 ]
+        java-version: [ 17 ]
         os: [ubuntu-latest, windows-latest]
     outputs:
       build-dir: ${{ steps.set-output.outputs.build-dir }}
