@@ -71,6 +71,7 @@ jobs:
  
       - name: Use secret
         run: echo "Secret token ${{ secrets.PASSWORD}}"
- 
-      - name: Use global variable
-        run: echo "Global variable ENV VAR: $GLOBAL_ENV_VAR"
+        
+      - name: Show globale Environment Variable
+        run: |
+          echo "Global ENV VAR: $GLOBAL_ENV_VAR"
