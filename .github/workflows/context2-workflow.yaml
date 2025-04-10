@@ -61,7 +61,7 @@ jobs:
           ls ${{ needs.build.outputs.build-dir }}
  
       - name: Use secret
-        run: echo "Secret token: ${{ secrets.DEPLOY_TOKEN }}"
+        run: echo "Secret token ${{ secrets.DEPLOY_TOKEN }}"
  
       - name: Use global variable
         run: echo "Global variable: $GLOBAL_ENV_VAR"
