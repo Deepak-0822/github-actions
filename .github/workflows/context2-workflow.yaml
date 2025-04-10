@@ -43,7 +43,7 @@ jobs:
         id: set-output
         run: |
           mkdir -p artifacts
-          cp /home/runner/work/github-actions/github-actions/target/*.jar artifacts/
+          cp /**/github-actions/github-actions/target/*.jar artifacts/
           echo "build-dir=artifacts" >> $GITHUB_OUTPUT
  
   deploy:
