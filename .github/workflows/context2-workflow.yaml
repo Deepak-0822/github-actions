@@ -68,7 +68,6 @@ jobs:
       - name: Deploy app
         run: |
           echo "Deploying JAR to ${{ github.event.inputs.environment }} environment"
-          ls ${{ needs.build.outputs.build-dir }}
  
       - name: Use secret
         run: echo "Secret token ${{ secrets.DEPLOY_TOKEN }}"
