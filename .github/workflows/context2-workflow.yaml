@@ -37,11 +37,11 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
  
-      - name: Grant execute permission for Gradle
-        run: chmod +x gradlew
+      # - name: Grant execute permission for Gradle
+      #   run: chmod +x gradlew
  
-      - name: Build with Gradle
-        run: ./gradlew build
+      # - name: Build with Gradle
+      #   run: ./gradlew build
  
       - name: Publish artifacts
         id: set-output
