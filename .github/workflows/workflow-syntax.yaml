@@ -21,8 +21,9 @@ env:
  
 jobs:
   build:
-  run-on-label:
     if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
+    name: Build Java App
+    runs-on: ubuntu-latest
     name: Build Java App
     runs-on: ${{ matrix.os }}
     strategy:
