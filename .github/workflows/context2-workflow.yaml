@@ -3,10 +3,14 @@ name: Java Build and Deploy
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy to (dev, staging, production)'
+      target-env:
+        default: stg
         required: true
-        default: 'dev'
+        type: environment
+      # environment:
+      #   description: 'Environment to deploy to (dev, staging, production)'
+      #   required: true
+      #   default: 'dev'
  
 env:
   GLOBAL_ENV_VAR: 'enabled'
