@@ -16,13 +16,13 @@ on:
   label:
     types:
       - created
+    if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
 
 env:
   GLOBAL_ENV_VAR: 'enabled'
  
 jobs:
   build:
-    if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
     name: Build Java App
     runs-on: ${{ matrix.os }}
     strategy:
