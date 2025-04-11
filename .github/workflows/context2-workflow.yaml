@@ -1,5 +1,5 @@
 name: Java Build and Deploy
- 
+
 on:
   workflow_dispatch:
     inputs:
@@ -15,14 +15,14 @@ on:
   label:
     types:
       - created
- 
+
 env:
   GLOBAL_ENV_VAR: 'enabled'
- 
+
 jobs:
   build:
-  run-on-label:
-    if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
+    run-on-label:
+      if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
     name: Build Java App
     runs-on: ${{ matrix.os }}
     strategy:
@@ -31,15 +31,15 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     outputs:
       build-dir: ${{ steps.set-output-ubuntu.outputs.build-dir }}
-    environment: ${{ github.event.inputs.environment }}   ### we can use inputs.envinment
- 
+    environment: ${{ github.event.inputs.target-env }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Show PASSWORD & user name
         run: |
           echo "PASSWORD is set but hidden MY_SECRET ${{ secrets.PASSWORD }} "
-          echo "User_name is set but hidden MY_SECRET ${{ vars.USER_NAME }} "
+          echo "User_name is set but hidden MY_SECRET ${{ secrets.user }} "
           
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v4
@@ -48,7 +48,7 @@ jobs:
           java-version: ${{ matrix.java-version }}
       - name: Build with Maven
         run: mvn clean install
- 
+
       - name: Publish artifacts (Ubuntu)
         if: runner.os == 'Linux'
         id: set-output-ubuntu
@@ -64,24 +64,24 @@ jobs:
           mkdir -p artifacts
           cp D:\a\github-actions\github-actions\target\*.jar artifacts/
           echo "build-dir=artifacts" >> $GITHUB_OUTPUT
- 
+
   deploy:
     name: Deploy Java App
     runs-on: ubuntu-latest
     needs: build
-    environment: ${{ github.event.inputs.environment }}
- 
+    environment: ${{ github.event.inputs.target-env }}
+
     steps:
       - name: Use build output
         run: echo "Deploying from ${{ needs.build.outputs.build-dir }}"
- 
+
       - name: Deploy app
         run: |
-          echo "Deploying JAR to ${{ github.event.inputs.environment }} environment"
- 
+          echo "Deploying JAR to ${{ github.event.inputs.target-env }} environment"
+
       - name: Use secret
         run: echo "Secret token ${{ secrets.PASSWORD}}"
         
-      - name: Show globale Environment Variable
+      - name: Show global Environment Variable
         run: |
           echo "Global ENV VAR: $GLOBAL_ENV_VAR"
