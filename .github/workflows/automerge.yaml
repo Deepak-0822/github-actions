@@ -24,7 +24,7 @@ jobs:
         run: |
           gh pr merge "$PR_URL" --auto --merge --delete-branch --repo "$REPO"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           PR_URL: ${{ github.event.issue.pull_request.html_url }}
           REPO: ${{ github.repository }}
  
