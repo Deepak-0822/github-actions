@@ -1,5 +1,5 @@
 name: Workflow syntax job
- 
+
 on:
   workflow_dispatch:
     inputs:
@@ -12,16 +12,17 @@ on:
           - stg
           - uat
           - prod
+  pull_request:
   label:
     types:
       - created
- 
+
 env:
   GLOBAL_ENV_VAR: 'enabled'
  
 jobs:
   build:
-    ## if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
+    if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
     name: Build Java App
     runs-on: ${{ matrix.os }}
     strategy:
