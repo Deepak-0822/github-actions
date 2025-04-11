@@ -12,12 +12,17 @@ on:
           - stg
           - uat
           - prod
+  label:
+    types:
+      - created
  
 env:
   GLOBAL_ENV_VAR: 'enabled'
  
 jobs:
   build:
+  run-on-label:
+    if: contains(github.event.label.name, 'bug') || contains(github.event.label.name, 'enhancement')
     name: Build Java App
     runs-on: ${{ matrix.os }}
     strategy:
