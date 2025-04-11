@@ -1,0 +1,29 @@
+name: Enable Auto Merge on Comment
+ 
+on:
+  workflow_dispatch:
+ 
+permissions:
+  pull-requests: write
+  contents: read
+ 
+jobs:
+  enable-auto-merge:
+    if: github.event.issue.pull_request != null && contains(github.event.comment.body, '/auto')
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+ 
+      - name: Set up GitHub CLI
+        uses: cli/gh-action@v2
+ 
+      - name: Enable Auto-Merge
+        run: |
+          gh pr merge "$PR_URL" --auto --merge --delete-branch --repo "$REPO"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          PR_URL: ${{ github.event.issue.pull_request.html_url }}
+          REPO: ${{ github.repository }}
+ 
