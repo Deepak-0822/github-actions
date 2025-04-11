@@ -23,4 +23,8 @@ jobs:
       - name: Enable Auto-Merge
         run: |
           gh pr merge "$PR_URL" --auto --merge --delete-branch --repo "$REPO"
-        env: 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.issue.pull_request.html_url }}
+          REPO: ${{ github.repository }}
+ 
