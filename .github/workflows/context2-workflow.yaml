@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Debug event
+        run: echo "Event label: ${{ github.event.label.name }}"
       - name: Show PASSWORD & user name
         run: |
           echo "PASSWORD is set but hidden MY_SECRET ${{ secrets.PASSWORD }} "
@@ -55,7 +57,6 @@ jobs:
           mkdir -p artifacts
           cp /home/runner/work/github-actions/github-actions/target/*.jar artifacts/
           echo "build-dir=artifacts" >> $GITHUB_OUTPUT
-
       - name: Publish artifacts (Windows)
         if: runner.os == 'Windows'
         id: set-output-windows
