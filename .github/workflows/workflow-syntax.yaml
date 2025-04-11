@@ -1,5 +1,5 @@
 name: Workflow syntax job
- 
+
 on:
   workflow_dispatch:
     inputs:
@@ -12,10 +12,11 @@ on:
           - stg
           - uat
           - prod
+  pull_request:
   label:
     types:
       - created
- 
+
 env:
   GLOBAL_ENV_VAR: 'enabled'
  
