@@ -6,11 +6,12 @@ on:
       target-env:
         default: stg
         required: true
-        type: environment
-      # environment:
-      #   description: 'Environment to deploy to (dev, staging, production)'
-      #   required: true
-      #   default: 'dev'
+        type: choice
+        options:
+          - dev
+          - stg
+          - uat
+          - prod
  
 env:
   GLOBAL_ENV_VAR: 'enabled'
