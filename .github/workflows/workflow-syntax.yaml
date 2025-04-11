@@ -1,4 +1,4 @@
-name: Java Build and Deploy
+name: Workflow syntax job
  
 on:
   workflow_dispatch:
