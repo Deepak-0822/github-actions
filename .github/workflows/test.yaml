@@ -1,0 +1,19 @@
+name: Environment Test
+ 
+on:
+  workflow_dispatch:
+    inputs:
+      target-env:
+        default: stg
+        type: environment
+ 
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    environment: ${{inputs.target-env}}
+ 
+    steps:
+      - name: echo vars
+        run: |
+          echo "Env var USERNAME: ${{vars.USER_NAME}}"
+          echo "Env secret API_KEY: ${{secrets.PASSWORD}}"

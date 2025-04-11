@@ -1,0 +1,24 @@
+name: Function Showcase Pipeline
+ 
+on:
+  push:
+    paths:
+      # - '.github/workflows/**'
+ 
+jobs:
+  test-functions:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+ 
+      - name: Hash a file using hashFiles
+        id: hash
+        run: |
+          HASH=$(sha256sum input.json | awk '{print $1}')
+          echo "file-hash=$HASH" >> $GITHUB_OUTPUT
+ 
+      - name: Print Status
+        if: ${{ always() }}
+        run: echo "Workflow status ${{ job.status }}"
