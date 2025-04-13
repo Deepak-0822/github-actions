@@ -1,21 +1,40 @@
 name: Node.js and Python CI
  
-on: [push, pull_request]
- 
+on:
+    workflow_dispatch:
+      inputs:
+        target-env:
+          default: stg
+          required: true
+          type: choice
+          options:
+            - dev
+            - stg
+            - uat
+            - prod
+    pull_request:
+    label:
+      types:
+        - created
+
 permissions:
   contents: read
   pull-requests: write
  
 jobs:
   build:
-    runs-on: ubuntu-latest
- 
+    name: cache-testing
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest]
+          cmd: [test]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
  
       # Setup Node.js
-      - name: Setup Node.js
+      - name: Setup Node.js - {{ matrix.os }}
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -24,16 +43,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('nodejs/package-lock.json') }}
+          key: ${{ matrix.os }}-node-${{ hashFiles('nodejs/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ matrix.os }}-node
  
       - name: Install Node.js deps
         working-directory: ./nodejs
         run: npm install
  
       # Setup Python
-      - name: Setup Python
+      - name: Setup Python - ${{ matrix.os }}
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
@@ -42,9 +61,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
+          key: ${{ matrix.os }}-pip-${{ hashFiles('python/requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-pip-
+            ${{ matrix.os }}-pip
  
       - name: Install Python deps
         working-directory: ./python
