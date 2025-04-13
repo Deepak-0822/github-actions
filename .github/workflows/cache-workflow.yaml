@@ -14,27 +14,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
  
-      # Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    #   # Setup Node.js
+    #   - name: Setup Node.js
+    #     uses: actions/setup-node@v3
+    #     with:
+    #       node-version: '18'
  
-      - name: Cache npm dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('nodejs/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+    #   - name: Cache npm dependencies
+    #     uses: actions/cache@v3
+    #     with:
+    #       path: ~/.npm
+    #       key: ${{ runner.os }}-node-${{ hashFiles('nodejs/package-lock.json') }}
+    #       restore-keys: |
+    #         ${{ runner.os }}-node-
  
-      - name: Install Node.js deps
-        working-directory: ./nodejs
-        run: npm install
+    #   - name: Install Node.js deps
+    #     working-directory: ./nodejs
+    #     run: npm install
  
-      - name: Run Node.js App
-        working-directory: ./nodejs
-        run: node index.js  # Replace with your main JS file
+    #   - name: Run Node.js App
+    #     working-directory: ./nodejs
+    #     run: node index.js  # Replace with your main JS file
  
       # Setup Python
       - name: Setup Python
