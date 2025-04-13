@@ -1,12 +1,12 @@
-import json
+import requests
+import pandas as pd
 from datetime import datetime
 
-data = {
-    "message": "Hello from Python!",
-    "timestamp": datetime.now().isoformat()
-}
+response = requests.get("https://jsonplaceholder.typicode.com/posts")
+posts = response.json()
 
-with open("python/output.json", "w") as f:
-    json.dump(data, f, indent=2)
+df = pd.DataFrame(posts)
+df['fetched_at'] = datetime.now().isoformat()
 
-print("Python script executed and data saved to output.json")
+df.to_csv("python/posts.csv", index=False)
+print("Data saved to posts.csv")
