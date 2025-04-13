@@ -1,6 +1,9 @@
 name: Node.js and Python CI
  
 on:
+    push:
+      branches: main
+
     workflow_dispatch:
       inputs:
         target-env:
@@ -23,6 +26,9 @@ permissions:
  
 jobs:
   build:
+    concurrency:
+        group: Node & py deplyment
+        cancel-in-progress: false
     name: cache-testing
     strategy:
         fail-fast: true
@@ -35,7 +41,8 @@ jobs:
       - name: GitHub Context
         env: 
           GITHUB_CONTEXT: ${{ tojson(github)}}
-    steps:
+        run: echo "$GITHUB_CONTEXT"
+
       - name: Checkout code
         uses: actions/checkout@v3
  
@@ -74,3 +81,9 @@ jobs:
       - name: Install Python deps
         working-directory: ./python
         run: pip install -r requirements.txt
+
+      - name: Show PASSWORD & user name
+        run: |
+          echo "PASSWORD is set but hidden MY_SECRET ${{ secrets.PASSWORD }} "
+          echo "User_name is set but hidden MY_SECRET ${{ vars.USER_NAME }} "
+          echo "Deploying JAR to ${{ github.event.inputs.environment }} environment"
