@@ -1,0 +1,59 @@
+name: Node.js and Python CI
+ 
+on: [push, pull_request]
+ 
+permissions:
+  contents: read
+  pull-requests: write
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+ 
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+ 
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('nodejs/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+ 
+      - name: Install Node.js deps
+        working-directory: ./nodejs
+        run: npm install
+ 
+      - name: Run Node.js App
+        working-directory: ./nodejs
+        run: node index.js  # Replace with your main JS file
+ 
+      # Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+ 
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('python/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+ 
+      - name: Install Python deps
+        working-directory: ./python
+        run: pip install -r requirements.txt
+ 
+      - name: Run Python App
+        working-directory: ./python
+        run: python main.py  # Replace with your main Python script
