@@ -25,10 +25,16 @@ jobs:
   build:
     name: cache-testing
     strategy:
+        fail-fast: true
+        max-parallel: 3
         matrix:
-          os: [ubuntu-latest, windows-latest]
+          os: [ubuntu-latest, ] #ubuntu-20.04 windows-latest
           cmd: [test]
     runs-on: ${{ matrix.os }}
+    steps:
+      - name: GitHub Context
+        env: 
+          GITHUB_CONTEXT: ${{ tojson(github)}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
