@@ -1,8 +1,17 @@
-const fs = require('fs');
-const data = {
-  message: 'Hello from Node.js!',
-  timestamp: new Date().toISOString()
-};
+const express = require('express');
+const axios = require('axios');
+const app = express();
+const port = 3000;
 
-fs.writeFileSync('nodejs/output.json', JSON.stringify(data, null, 2));
-console.log('Node.js script executed and data saved to output.json');
+app.get('/', async (req, res) => {
+  const response = await axios.get('https://api.github.com');
+  res.json({
+    message: 'Hello from Node.js Express API!',
+    github: response.data.current_user_url,
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Node.js server running at http://localhost:${port}`);
+});
