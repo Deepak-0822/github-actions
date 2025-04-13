@@ -1,0 +1,56 @@
+name: Workflow Caching Dependencies for Node.js & Python
+
+on:
+  workflow_dispatch:
+    inputs:
+      target-env:
+        default: stg
+        required: true
+        type: choice
+        options:
+          - dev
+          - stg
+          - uat
+          - prod
+  pull_request:
+  label:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+ 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+ 
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+ 
+      - name: Install Node.js deps
+        run: npm ci
+ 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+ 
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+ 
+      - name: Install Python deps
+        run: pip install -r requirements.txt

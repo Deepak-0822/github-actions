@@ -9,7 +9,6 @@ permissions:
  
 jobs:
   enable-auto-merge:
-    if: github.event.issue.pull_request != null && contains(github.event.comment.body, '/auto')
     runs-on: ubuntu-latest
  
     steps:
