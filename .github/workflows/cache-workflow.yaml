@@ -30,7 +30,7 @@ jobs:
  
       - name: Install Node.js deps
         working-directory: ./nodejs
-        run: npm install
+        run: npm ci
  
       - name: Run Node.js App
         working-directory: ./nodejs
