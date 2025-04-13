@@ -30,11 +30,7 @@ jobs:
  
       - name: Install Node.js deps
         working-directory: ./nodejs
-        run: npm ci
- 
-      - name: Run Node.js App
-        working-directory: ./nodejs
-        run: node index.js  # Replace with your main JS file
+        run: npm install
  
       # Setup Python
       - name: Setup Python
@@ -53,7 +49,3 @@ jobs:
       - name: Install Python deps
         working-directory: ./python
         run: pip install -r requirements.txt
- 
-      - name: Run Python App
-        working-directory: ./python
-        run: python main.py  # Replace with your main Python script
