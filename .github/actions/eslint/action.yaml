@@ -1,9 +1,13 @@
-name: "ESLint Linter"
-description: "Custom GitHub Action to run ESLint"
-inputs:
-  token:
-    description: 'GitHub Token'
-    required: true
+name: 'ESLint Docker Action'
+description: 'Run ESLint checks using a Docker container'
+author: 'Your Name'
 runs:
-  using: "docker"
-  image: "Dockerfile"
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.target }}
+inputs:
+  target:
+    description: 'Target directory or files to run ESLint on'
+    required: false
+    default: '.'
