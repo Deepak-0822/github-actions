@@ -1,10 +1,13 @@
-FROM node:18
+FROM node:18-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy action files
 COPY entrypoint.sh /entrypoint.sh
-COPY .eslintrc.js package*.json ./
-RUN npm install
 RUN chmod +x /entrypoint.sh
+
+# Install ESLint globally
+RUN npm install -g eslint
 
 ENTRYPOINT ["/entrypoint.sh"]
