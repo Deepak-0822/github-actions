@@ -10,4 +10,4 @@ RUN chmod +x /entrypoint.sh
 # Install ESLint globally
 RUN npm install -g eslint
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
