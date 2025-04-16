@@ -4,7 +4,7 @@ FROM node:18
 WORKDIR /app
 
 # Copy files
-COPY entrypoint.sh ./
+COPY entrypoint.sh ./entrypoint.sh
 COPY package*.json ./
 COPY .eslintrc.js ./
 
