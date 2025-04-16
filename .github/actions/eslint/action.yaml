@@ -1,0 +1,9 @@
+name: "ESLint Linter"
+description: "Custom GitHub Action to run ESLint"
+inputs:
+  token:
+    description: 'GitHub Token'
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
