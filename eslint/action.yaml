@@ -1,6 +1,0 @@
-name: 'Run ESLint'
-description: 'A GitHub Action to run ESLint checks'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  # entrypoint: '/app/entrypoint.sh'
