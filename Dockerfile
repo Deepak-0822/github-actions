@@ -3,7 +3,7 @@ FROM node:18
 WORKDIR /app
 
 # Copy specifically the entrypoint script
-COPY .github/actions/eslint/entrypoint.sh ./entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
 
 # Copy rest of the files (if needed)
 COPY package*.json ./
