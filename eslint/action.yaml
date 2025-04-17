@@ -3,4 +3,4 @@ description: 'A GitHub Action to run ESLint checks'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  entrypoint: './entrypoint.sh'
+  entrypoint: '/app/entrypoint.sh'
