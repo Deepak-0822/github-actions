@@ -13,7 +13,7 @@ COPY .eslintrc.js ./
 RUN npm install eslint
 
 # Make script executable
-RUN chmod +x ./entrypoint.sh
+RUN chmod +x entrypoint.sh
  
 # Set the entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
