@@ -3,7 +3,7 @@ description: 'Run ESLint checks using a Docker container'
 author: 'Your Name'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: '../../Dockerfile'
   args:
     - ${{ inputs.target }}
 inputs:
