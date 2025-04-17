@@ -4,9 +4,10 @@ FROM node:18
 WORKDIR /app
 
 # Copy files
-COPY entrypoint.sh ./entrypoint.sh
-COPY package*.json ./
-COPY .eslintrc.js ./
+# COPY entrypoint.sh ./entrypoint.sh
+# COPY package*.json ./
+# COPY .eslintrc.js ./
+COPY . .
 
 # Install ESLint
 RUN npm install eslint
@@ -15,4 +16,4 @@ RUN npm install eslint
 RUN chmod +x entrypoint.sh
 
 # Correct path — script is in current dir
-ENTRYPOINT ["./app/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
