@@ -1,5 +1,4 @@
 name: ESLint Check
-
 on:
   push:
     branches: [feature/lint0.2]
