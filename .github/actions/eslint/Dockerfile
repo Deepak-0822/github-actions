@@ -3,7 +3,7 @@ FROM node:18
 WORKDIR /app
 
 # Copy specifically the entrypoint script
-COPY entrypoint.sh /app/entrypoint.sh
+COPY .github/actions/eslint/entrypoint.sh ./entrypoint.sh
 
 # Copy rest of the files (if needed)
 COPY package*.json ./
@@ -13,7 +13,7 @@ COPY .eslintrc.js ./
 RUN npm install eslint
 
 # Make script executable
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 # Set entrypoint
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
