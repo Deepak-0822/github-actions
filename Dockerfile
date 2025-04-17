@@ -16,4 +16,4 @@ RUN npm install eslint
 RUN chmod +x ./entrypoint.sh
  
 # Set the entrypoint
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
