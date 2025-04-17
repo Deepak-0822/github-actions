@@ -1,8 +1,6 @@
-FROM node:18
+name: "Custom ESLint Action"
+description: "A custom GitHub Action that lints JavaScript code using ESLint in a Docker container"
+runs:
+  using: "docker"
+  image: "Dockerfile"
 
-WORKDIR /app
-
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
