@@ -15,4 +15,4 @@ RUN npm install eslint
 RUN chmod +x entrypoint.sh
 
 # Correct path — script is in current dir
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
